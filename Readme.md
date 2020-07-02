@@ -20,6 +20,11 @@ This will install the necessary CDK, then this example's dependencies, and then 
 
 ## Deploy
 
+Run `cdk bootstrap aws://<ACCOUNT-NUMBER>/<REGION>`for deploying the cdk toolkit stack
 Run `cdk deploy`. This will deploy / redeploy your Stack to your AWS Account.
 
 After the deployment you will see the API's URL, which represents the url you can then use.
+
+## Destroy
+
+Run `cdk destroy`
