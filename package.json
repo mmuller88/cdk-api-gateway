@@ -21,6 +21,7 @@
     "@aws-cdk/aws-apigateway": "*",
     "@aws-cdk/aws-dynamodb": "*",
     "@aws-cdk/aws-lambda": "*",
-    "@aws-cdk/core": "*"
+    "@aws-cdk/core": "*",
+    "aws-sdk": "^2.705.0"
   }
 }
