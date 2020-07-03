@@ -30,16 +30,6 @@ export class ApiLambdaCrudDynamoDBStack extends cdk.Stack {
       }
     });
 
-    const getAllLambda = new lambda.Function(this, 'getAllItemsFunction', {
-      code: new lambda.AssetCode('src'),
-      handler: 'get-all.handler',
-      runtime: lambda.Runtime.NODEJS_10_X,
-      environment: {
-        TABLE_NAME: dynamoTable.tableName,
-        PRIMARY_KEY: 'itemId'
-      }
-    });
-
     const createOne = new lambda.Function(this, 'createItemFunction', {
       code: new lambda.AssetCode('src'),
       handler: 'create.handler',
@@ -70,7 +60,6 @@ export class ApiLambdaCrudDynamoDBStack extends cdk.Stack {
       }
     });
     
-    dynamoTable.grantReadWriteData(getAllLambda);
     dynamoTable.grantReadWriteData(getOneLambda);
     dynamoTable.grantReadWriteData(createOne);
     dynamoTable.grantReadWriteData(updateOne);
@@ -81,8 +70,6 @@ export class ApiLambdaCrudDynamoDBStack extends cdk.Stack {
     });
 
     const items = api.root.addResource('items');
-    const getAllIntegration = new apigateway.LambdaIntegration(getAllLambda);
-    items.addMethod('GET', getAllIntegration);
 
     const createOneIntegration = new apigateway.LambdaIntegration(createOne);
     items.addMethod('POST', createOneIntegration);
