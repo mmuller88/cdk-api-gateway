@@ -12,7 +12,7 @@ To build this app, you need to be in this example's root folder. Then run the fo
 
 ```bash
 npm install -g aws-cdk
-npm install
+npm install && npm install --prefix src
 npm run build
 ```
 
