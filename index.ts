@@ -1,8 +1,9 @@
 import { Function, AssetCode, Runtime} from '@aws-cdk/aws-lambda';
 import { LambdaToDynamoDB } from '@aws-solutions-constructs/aws-lambda-dynamodb';
 import { Stack, App, RemovalPolicy } from '@aws-cdk/core';
-import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
+import { Table, AttributeType, StreamViewType } from '@aws-cdk/aws-dynamodb';
 import { RestApi, LambdaIntegration, MockIntegration, IResource, PassthroughBehavior } from '@aws-cdk/aws-apigateway';
+import { DynamoDBStreamToLambda } from '@aws-solutions-constructs/aws-dynamodb-stream-lambda';
 
 export class ApiLambdaCrudDynamoDBStack extends Stack {
   constructor(app: App, id: string) {
@@ -14,6 +15,7 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
         type: AttributeType.STRING
       },
       tableName: 'items',
+      stream: StreamViewType.NEW_AND_OLD_IMAGES,
 
       // The default removal policy is RETAIN, which means that cdk destroy will not attempt to delete
       // the new table, and it will remain in your account until manually deleted. By setting the policy to 
@@ -27,6 +29,12 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
       runtime: Runtime.NODEJS_10_X
     });
 
+    new DynamoDBStreamToLambda(this, 'dynamodb-stream-lambda', {
+      deployLambda: false,
+      existingLambdaObj: showDdbEdit,
+      existingTableObj: dynamoTable
+    });
+   
     const getOneLambda = new Function(this, 'getOneLambda', {
       code: new AssetCode('src'),
       handler: 'get-one.handler',

@@ -19,6 +19,7 @@
     "@aws-cdk/aws-lambda": "1.47.1",
     "@aws-cdk/cdk": "0.36.1",
     "@aws-cdk/core": "1.47.1",
+    "@aws-solutions-constructs/aws-dynamodb-stream-lambda": "1.47.0",
     "@aws-solutions-constructs/aws-lambda-dynamodb": "1.47.0",
     "aws-sdk": "^2.705.0"
   }
