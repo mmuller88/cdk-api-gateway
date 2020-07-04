@@ -31,7 +31,7 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
       }
     });
 
-    new LambdaToDynamoDB(this, 'test-lambda-dynamodb-stack', {
+    new LambdaToDynamoDB(this, 'getOneLambda-dynamodb', {
       deployLambda: false,
       existingLambdaObj: getOneLambda,
       existingTableObj: dynamoTable,
