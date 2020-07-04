@@ -19,7 +19,13 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
       // the new table, and it will remain in your account until manually deleted. By setting the policy to 
       // DESTROY, cdk destroy will delete the table (even if it has data in it)
       removalPolicy: RemovalPolicy.DESTROY, // NOT recommended for production code
-    });    
+    });
+
+    const showDdbEdit = new Function(this, 'showDdbEdit', {
+      code: new AssetCode('src'),
+      handler: 'show-edit.handler',
+      runtime: Runtime.NODEJS_10_X
+    });
 
     const getOneLambda = new Function(this, 'getOneLambda', {
       code: new AssetCode('src'),

@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 const db = new AWS.DynamoDB.DocumentClient();
 const { v4 : uuidv4 } = require('uuid');
-const TABLE_NAME = process.env.TABLE_NAME || '';
+const DDB_TABLE_NAME = process.env.DDB_TABLE_NAME || '';
 const PRIMARY_KEY = process.env.PRIMARY_KEY || '';
 
 const RESERVED_RESPONSE = `Error: You're using AWS reserved keywords as attributes`,
@@ -15,7 +15,7 @@ export const handler = async (event: any = {}) : Promise <any> => {
   const item = typeof event.body == 'object' ? event.body : JSON.parse(event.body);
   item[PRIMARY_KEY] = uuidv4();
   const params = {
-    TableName: TABLE_NAME,
+    TableName: DDB_TABLE_NAME,
     Item: item
   };
 
