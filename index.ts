@@ -1,14 +1,17 @@
 import { Function, AssetCode, Runtime} from '@aws-cdk/aws-lambda';
 import { LambdaToDynamoDB } from '@aws-solutions-constructs/aws-lambda-dynamodb';
-import { Stack, App, RemovalPolicy } from '@aws-cdk/core';
+import { Stack, App, RemovalPolicy, StackProps } from '@aws-cdk/core';
 import { Table, AttributeType, StreamViewType } from '@aws-cdk/aws-dynamodb';
 import { RestApi, LambdaIntegration, MockIntegration, IResource, PassthroughBehavior } from '@aws-cdk/aws-apigateway';
 import { DynamoDBStreamToLambda } from '@aws-solutions-constructs/aws-dynamodb-stream-lambda';
 import { CloudFrontToApiGateway } from '@aws-solutions-constructs/aws-cloudfront-apigateway';
 
+interface ApiLambdaCrudDynamoDBStackProps extends StackProps {
+  cloudfront?: boolean;
+}
 export class ApiLambdaCrudDynamoDBStack extends Stack {
-  constructor(app: App, id: string) {
-    super(app, id);
+  constructor(app: App, id: string, props?: ApiLambdaCrudDynamoDBStackProps) {
+    super(app, id, props);
 
     const dynamoTable = new Table(this, 'items', {
       partitionKey: {
@@ -115,10 +118,12 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
       restApiName: 'Items Service'
     });
 
-    new CloudFrontToApiGateway(this, 'test-cloudfront-apigateway', {
+    if(props && props.cloudfront){
+      new CloudFrontToApiGateway(this, 'test-cloudfront-apigateway', {
         existingApiGatewayObj: api
-    });
-
+      });
+    }
+    
     const items = api.root.addResource('items');
     const getAllIntegration = new LambdaIntegration(getAllLambda);
     items.addMethod('GET', getAllIntegration);
@@ -169,5 +174,11 @@ export function addCorsOptions(apiResource: IResource) {
 }
 
 const app = new App();
-new ApiLambdaCrudDynamoDBStack(app, 'ApiLambdaCrudDynamoDBExample');
+new ApiLambdaCrudDynamoDBStack(app, 'ApiLambdaCrudDynamoDBExampleProduction', {
+  env: {
+    region: "us-east-1"
+  },
+  cloudfront: true
+});
+
 app.synth();
