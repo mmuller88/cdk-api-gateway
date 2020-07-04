@@ -25,6 +25,10 @@ Run `npm run build && cdk deploy`. This will build and deploy / redeploy your St
 
 After the deployment you will see the API's URL, which represents the url you can then use.
 
+## Deploy Multistack
+
+Run `npm run build && cdk deploy '*'`. This will build and deploy / redeploy all Stacks to your AWS Account.
+
 ## Destroy
 
 Run `cdk destroy`

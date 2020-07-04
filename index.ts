@@ -180,5 +180,10 @@ new ApiLambdaCrudDynamoDBStack(app, 'ApiLambdaCrudDynamoDBExampleProduction', {
   },
   cloudfront: true
 });
-
+new ApiLambdaCrudDynamoDBStack(app, 'ApiLambdaCrudDynamoDBExampleDevelopment', {
+  env: {
+    region: "us-east-2"
+  },
+  cloudfront: false
+});
 app.synth();
