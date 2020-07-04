@@ -4,6 +4,7 @@ import { Stack, App, RemovalPolicy } from '@aws-cdk/core';
 import { Table, AttributeType, StreamViewType } from '@aws-cdk/aws-dynamodb';
 import { RestApi, LambdaIntegration, MockIntegration, IResource, PassthroughBehavior } from '@aws-cdk/aws-apigateway';
 import { DynamoDBStreamToLambda } from '@aws-solutions-constructs/aws-dynamodb-stream-lambda';
+import { CloudFrontToApiGateway } from '@aws-solutions-constructs/aws-cloudfront-apigateway';
 
 export class ApiLambdaCrudDynamoDBStack extends Stack {
   constructor(app: App, id: string) {
@@ -112,6 +113,10 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
 
     const api = new RestApi(this, 'itemsApi', {
       restApiName: 'Items Service'
+    });
+
+    new CloudFrontToApiGateway(this, 'test-cloudfront-apigateway', {
+        existingApiGatewayObj: api
     });
 
     const items = api.root.addResource('items');
