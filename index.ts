@@ -26,7 +26,6 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
       handler: 'get-one.handler',
       runtime: Runtime.NODEJS_10_X,
       environment: {
-        TABLE_NAME: dynamoTable.tableName,
         PRIMARY_KEY: 'itemId'
       }
     });
