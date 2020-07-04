@@ -21,7 +21,7 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
       removalPolicy: RemovalPolicy.DESTROY, // NOT recommended for production code
     });    
 
-    const getOneLambda = new Function(this, 'getOneItemFunction', {
+    const getOneLambda = new Function(this, 'getOneLambda', {
       code: new AssetCode('src'),
       handler: 'get-one.handler',
       runtime: Runtime.NODEJS_10_X,
@@ -36,24 +36,34 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
       existingTableObj: dynamoTable,
     });
 
-    const getAllLambda = new Function(this, 'getAllItemsFunction', {
+    const getAllLambda = new Function(this, 'getAllLambda', {
       code: new AssetCode('src'),
       handler: 'get-all.handler',
       runtime: Runtime.NODEJS_10_X,
       environment: {
-        TABLE_NAME: dynamoTable.tableName,
         PRIMARY_KEY: 'itemId'
       }
     });
 
-    const createOne = new Function(this, 'createItemFunction', {
+    new LambdaToDynamoDB(this, 'getAllLambda-dynamodb', {
+      deployLambda: false,
+      existingLambdaObj: getAllLambda,
+      existingTableObj: dynamoTable,
+    });
+
+    const createOne = new Function(this, 'createOne', {
       code: new AssetCode('src'),
       handler: 'create.handler',
       runtime: Runtime.NODEJS_10_X,
       environment: {
-        TABLE_NAME: dynamoTable.tableName,
         PRIMARY_KEY: 'itemId'
       }
+    });
+
+    new LambdaToDynamoDB(this, 'createOne-dynamodb', {
+      deployLambda: false,
+      existingLambdaObj: createOne,
+      existingTableObj: dynamoTable,
     });
 
     const updateOne = new Function(this, 'updateItemFunction', {
@@ -61,9 +71,14 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
       handler: 'update-one.handler',
       runtime: Runtime.NODEJS_10_X,
       environment: {
-        TABLE_NAME: dynamoTable.tableName,
         PRIMARY_KEY: 'itemId'
       }
+    });
+
+    new LambdaToDynamoDB(this, 'updateOne-dynamodb', {
+      deployLambda: false,
+      existingLambdaObj: updateOne,
+      existingTableObj: dynamoTable,
     });
 
     const deleteOne = new Function(this, 'deleteItemFunction', {
@@ -71,16 +86,15 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
       handler: 'delete-one.handler',
       runtime: Runtime.NODEJS_10_X,
       environment: {
-        TABLE_NAME: dynamoTable.tableName,
         PRIMARY_KEY: 'itemId'
       }
     });
-    
-    dynamoTable.grantReadWriteData(getAllLambda);
-    // dynamoTable.grantReadWriteData(getOneLambda);
-    dynamoTable.grantReadWriteData(createOne);
-    dynamoTable.grantReadWriteData(updateOne);
-    dynamoTable.grantReadWriteData(deleteOne);
+
+    new LambdaToDynamoDB(this, 'deleteOne-dynamodb', {
+      deployLambda: false,
+      existingLambdaObj: deleteOne,
+      existingTableObj: dynamoTable,
+    });
 
     const api = new RestApi(this, 'itemsApi', {
       restApiName: 'Items Service'
