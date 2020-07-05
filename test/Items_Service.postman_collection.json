@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8edae674-0ebc-41e3-8a18-5d800cc3e6ec",
+		"_postman_id": "aaf43c1c-7912-4269-9a1c-4fff041bb32b",
 		"name": "Items Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,10 +14,10 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f7320c40-1f17-48c6-9f57-85cb869dd935",
+								"id": "47c2d6de-1e14-4a75-9cdc-1f659d82324b",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(200);",
+									"    pm.response.to.have.status(201);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -54,7 +54,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4973493e-14ed-48dc-b084-199ed39ed305",
+								"id": "1c3f8bb8-627f-436d-9c20-93b0c9ad4b3f",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -89,6 +89,26 @@
 				},
 				{
 					"name": "/items/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4bd4a9ef-dfaf-489c-a1df-1b43b201604c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Property A contains B\", function () {",
+									"    pm.expect(jsonData.A).to.eql(\"B\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -117,7 +137,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38f7a944-1369-4b02-8c98-e1ded270c839",
+								"id": "a7d1a98d-5b86-41ff-8225-5129661c7560",
 								"exec": [
 									"pm.test(\"Status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
@@ -164,7 +184,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "de637937-d64c-4f2a-a22b-9024a7f8182c",
+								"id": "0700a19d-79d3-41b3-b766-7e10e1bc84b2",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
