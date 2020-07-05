@@ -32,3 +32,7 @@ Run `npm run build && cdk deploy '*'`. This will build and deploy / redeploy all
 ## Destroy
 
 Run `cdk destroy`
+
+## Run Postman Tests
+
+Run `npm run newman`
