@@ -66,7 +66,7 @@
 									"    pm.expect(jsonData.length).to.eql(1);",
 									"});",
 									"",
-									"pm.globals.set(\"id\", jsonData[0].itemId);"
+									"pm.globals.set(\"id\", jsonData[0].id);"
 								],
 								"type": "text/javascript"
 							}
