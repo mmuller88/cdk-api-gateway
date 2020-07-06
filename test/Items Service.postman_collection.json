@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8edae674-0ebc-41e3-8a18-5d800cc3e6ec",
+		"_postman_id": "71da11c3-49bf-4fec-96b0-62c9b62c25fd",
 		"name": "Items Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f7320c40-1f17-48c6-9f57-85cb869dd935",
+								"id": "4a32c717-2cf2-4c3e-adf1-ca49d53926a9",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {",
 									"    pm.response.to.have.status(201);",
@@ -54,7 +54,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4973493e-14ed-48dc-b084-199ed39ed305",
+								"id": "a569bf0e-2af8-4842-9df4-904a63fd8e85",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -89,6 +89,26 @@
 				},
 				{
 					"name": "/items/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bf6414c4-1c39-4599-a457-10d5f0506bf4",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Property A contains B\", function () {",
+									"    pm.expect(jsonData.A).to.eql(\"B\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -117,7 +137,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38f7a944-1369-4b02-8c98-e1ded270c839",
+								"id": "76db22eb-ce5a-43ce-9c13-d6247119ce50",
 								"exec": [
 									"pm.test(\"Status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
@@ -164,7 +184,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "de637937-d64c-4f2a-a22b-9024a7f8182c",
+								"id": "bee57061-7b39-44c7-92a6-a5e497067152",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
