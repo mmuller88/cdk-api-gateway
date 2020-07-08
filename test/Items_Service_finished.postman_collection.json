@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "71da11c3-49bf-4fec-96b0-62c9b62c25fd",
-		"name": "Items Service",
+		"name": "Items_Service_finished",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -184,6 +184,50 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "4601f4b5-49e3-4aa4-bb3f-40c68705892e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Property A contains B\", function () {",
+									"    pm.expect(jsonData.A).to.eql(\"C\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/items/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"items",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/items/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
 								"id": "bee57061-7b39-44c7-92a6-a5e497067152",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
@@ -220,12 +264,33 @@
 			"protocolProfileBehavior": {}
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "99daba2d-e332-4267-be38-7e97f8484231",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c422fd73-e617-4817-b61b-8f72615ef19e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
-			"id": "baseUrl",
+			"id": "b001f850-af0c-4193-9eb3-56418a03a58c",
 			"key": "baseUrl",
-			"value": "https://vqj6jvgo0e.execute-api.us-east-1.amazonaws.com/prod",
-			"type": "string"
+			"value": "https://vqj6jvgo0e.execute-api.us-east-1.amazonaws.com/prod"
 		}
 	],
 	"protocolProfileBehavior": {}
