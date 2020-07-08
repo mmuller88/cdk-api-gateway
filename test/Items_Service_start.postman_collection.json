@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "8edae674-0ebc-41e3-8a18-5d800cc3e6ec",
-		"name": "Items Service",
+		"name": "Items_Service_start",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -66,7 +66,7 @@
 									"    pm.expect(jsonData.length).to.eql(1);",
 									"});",
 									"",
-									"pm.globals.set(\"id\", jsonData[0].id);"
+									"pm.globals.set(\"id\", jsonData[0].itemId);"
 								],
 								"type": "text/javascript"
 							}
@@ -89,6 +89,26 @@
 				},
 				{
 					"name": "/items/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93aa111c-80d0-4b73-8007-03000f6b9e7f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Property A contains B\", function () {",
+									"    pm.expect(jsonData.A).to.eql(\"B\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -113,9 +133,30 @@
 				},
 				{
 					"name": "/items/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38f7a944-1369-4b02-8c98-e1ded270c839",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"A\": \"C\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseUrl}}/items/:id",
 							"host": [
@@ -128,7 +169,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "{{id}}"
 								}
 							]
 						}
@@ -137,6 +178,18 @@
 				},
 				{
 					"name": "/items/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de637937-d64c-4f2a-a22b-9024a7f8182c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -151,7 +204,8 @@
 							],
 							"variable": [
 								{
-									"key": "id"
+									"key": "id",
+									"value": "{{id}}"
 								}
 							]
 						}
@@ -162,12 +216,33 @@
 			"protocolProfileBehavior": {}
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "96cef518-047b-48be-8fa0-879c4fa3a13a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "49c41d14-72c4-41d0-b9f5-5207f7d14c27",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
-			"id": "baseUrl",
+			"id": "d1f5cc47-0414-498c-a609-08a62100872e",
 			"key": "baseUrl",
-			"value": "https://vqj6jvgo0e.execute-api.us-east-1.amazonaws.com/prod",
-			"type": "string"
+			"value": "https://vqj6jvgo0e.execute-api.us-east-1.amazonaws.com/prod"
 		}
 	],
 	"protocolProfileBehavior": {}
