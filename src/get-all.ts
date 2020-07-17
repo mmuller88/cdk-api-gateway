@@ -1,11 +1,11 @@
 const AWS = require('aws-sdk');
 const db = new AWS.DynamoDB.DocumentClient();
-const TABLE_NAME = process.env.TABLE_NAME || '';
+const DDB_TABLE_NAME = process.env.DDB_TABLE_NAME || '';
 
 export const handler = async () : Promise <any> => {
 
   const params = {
-    TableName: TABLE_NAME
+    TableName: DDB_TABLE_NAME
   };
 
   try {
