@@ -8,10 +8,6 @@
     "watch": "tsc -w",
     "cdk": "cdk"
   },
-  "author": {
-    "name": "Aleksandar Simovic <alexander.simovic@gmail.com>",
-    "url": "https://serverless.pub"
-  },
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^14.0.24",
