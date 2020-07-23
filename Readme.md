@@ -1,11 +1,5 @@
 # cdk-api-gateway
 
-1) Checkout https://github.com/aws-samples
-
-2) Copy the content of ./aws-cdk-examples/tree/master/typescript/api-cors-lambda-crud-dynamodb it to this project
-
-3) Follow the Build and Deploy
-
 ## Build
 
 To build this app, you need to be in this example's root folder. Then run the following:
