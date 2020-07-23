@@ -10,18 +10,18 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^10.17.0",
-    "typescript": "~3.7.2"
+    "@types/node": "^14.0.24",
+    "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@aws-cdk/aws-apigateway": "1.47.1",
-    "@aws-cdk/aws-dynamodb": "1.47.1",
-    "@aws-cdk/aws-lambda": "1.47.1",
+    "@aws-cdk/aws-apigateway": "1.52.0",
+    "@aws-cdk/aws-dynamodb": "1.52.0",
+    "@aws-cdk/aws-lambda": "1.52.0",
     "@aws-cdk/cdk": "0.36.1",
-    "@aws-cdk/core": "1.47.1",
-    "@aws-solutions-constructs/aws-cloudfront-apigateway": "^1.47.0",
-    "@aws-solutions-constructs/aws-dynamodb-stream-lambda": "1.47.0",
-    "@aws-solutions-constructs/aws-lambda-dynamodb": "1.47.0",
-    "aws-sdk": "^2.705.0"
+    "@aws-cdk/core": "1.52.0",
+    "@aws-solutions-constructs/aws-cloudfront-apigateway": "1.52.0",
+    "@aws-solutions-constructs/aws-dynamodb-stream-lambda": "1.52.0",
+    "@aws-solutions-constructs/aws-lambda-dynamodb": "1.52.0",
+    "aws-sdk": "2.718.0"
   }
 }
