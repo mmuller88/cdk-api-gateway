@@ -37,7 +37,6 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
     });
 
     new LambdaToDynamoDB(this, 'getOneLambda-dynamodb', {
-      deployLambda: false,
       existingLambdaObj: getOneLambda,
       existingTableObj: dynamoTable,
     });
@@ -52,7 +51,6 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
     });
 
     new LambdaToDynamoDB(this, 'getAllLambda-dynamodb', {
-      deployLambda: false,
       existingLambdaObj: getAllLambda,
       existingTableObj: dynamoTable,
     });
@@ -67,7 +65,6 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
     });
 
     new LambdaToDynamoDB(this, 'createOne-dynamodb', {
-      deployLambda: false,
       existingLambdaObj: createOne,
       existingTableObj: dynamoTable,
     });
@@ -82,7 +79,6 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
     });
 
     new LambdaToDynamoDB(this, 'updateOne-dynamodb', {
-      deployLambda: false,
       existingLambdaObj: updateOne,
       existingTableObj: dynamoTable,
     });
@@ -97,7 +93,6 @@ export class ApiLambdaCrudDynamoDBStack extends Stack {
     });
 
     new LambdaToDynamoDB(this, 'deleteOne-dynamodb', {
-      deployLambda: false,
       existingLambdaObj: deleteOne,
       existingTableObj: dynamoTable,
     });
