@@ -18,6 +18,6 @@
     "@aws-cdk/aws-dynamodb": "1.52.0",
     "@aws-cdk/aws-lambda": "1.52.0",
     "@aws-cdk/core": "1.52.0",
-    "aws-sdk": "2.719.0"
+    "aws-sdk": "2.814.0"
   }
 }
